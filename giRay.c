@@ -29,50 +29,48 @@ int getFunnyValue(int value)
 }
 
 void print(char c)
-{
-   printf("%c",c);
-}
+{printf("%c",c);}
 
 void render(int values[])
 {
+  int i,k,l,val,q,o;
 
-printf("\n\n\n");
-  int j,i,k,l,val,q;
-  for( j = 0;j < 5;j++){
+for(o=0;o++<3;print('\n'));
+
+  for(int j = 0;j < 5;j++){
     for(l = 0; l < 3;l++){
-        printf("     ");
+        for(o=0;o++<4;print(' '));
         for(k = 0;k < 6;k++){
             for(i = 0;i < 3; i++){
 
             val = getFunnyValue(values[k]);
 
-	    for(q=0;q<3;q++)
-            {
-               if(val & ((1 << 14) >> ((j*3)+i)))
-                 print('#');
-               else
-                 print(' ');
-          }
+            for(q=0;q<3;q++){
+            if(val & ((1 << 14) >> ((j*3)+i)))
+            {print('#');}else{print(' ');}
+          }}
 
           if((k % 2) == 1)
           {
+                for(o=0;o++<2;print(' '));
+
                 if((j % 2) == 0)
                 {
-                    printf("   ");
+                    print(' ');
                 }
                 else
                 {
                     if(k != 5)
-                        printf("  #");
+                        print('#');
                 }
           }
-      printf("  ");
+      for(o=0;o++<2;print(' '));
     }
-    printf("\n");
+    print('\n');
     }
 
   }
-  printf("\n\n\n");
+  for(o=0;o++<3;print('\n'));
 }
 
 int main(int argc, char *argv[])
@@ -83,14 +81,14 @@ int main(int argc, char *argv[])
 //    switch(argv[i])
 //    {
 //      case "time":
-       // time_t t = time(0);
-       // struct tm* tm= localtime(&t);
+        time_t t = time(0);
+        struct tm* tm= localtime(&t);
         int sec = -1;
         int array[6];
 
         while(1){
-time_t t = time(0);
-struct tm* tm = localtime(&t);
+        t = time(0);
+        tm = localtime(&t);
         if(sec != tm->tm_sec)
         {
             sec = tm->tm_sec;
@@ -105,12 +103,5 @@ struct tm* tm = localtime(&t);
         }
 
 }
-//    }
-//  }
-
 }
-
-
-
-
 
