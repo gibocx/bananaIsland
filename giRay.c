@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <time.h>
 
 int getFunnyValue(int value)
@@ -29,21 +28,30 @@ int getFunnyValue(int value)
             }
 }
 
+void print(char c)
+{
+   printf("%c",c);
+}
+
 void render(int values[])
 {
 
 printf("\n\n\n");
-  int i,k,l,val;
-  for(int j = 0;j < 5;j++){
+  int j,i,k,l,val,q;
+  for( j = 0;j < 5;j++){
     for(l = 0; l < 3;l++){
-        printf("  ");
+        printf("     ");
         for(k = 0;k < 6;k++){
             for(i = 0;i < 3; i++){
 
             val = getFunnyValue(values[k]);
 
-            if(val & ((1 << 14) >> ((j*3)+i)))
-            {printf("###");}else{printf("   ");}
+	    for(q=0;q<3;q++)
+            {
+               if(val & ((1 << 14) >> ((j*3)+i)))
+                 print('#');
+               else
+                 print(' ');
           }
 
           if((k % 2) == 1)
@@ -69,21 +77,20 @@ printf("\n\n\n");
 
 int main(int argc, char *argv[])
 {
-printf("%p\n\n",&main);
 //  int i;
 //  for(i=1;i < argc;i++)
 //  {
 //    switch(argv[i])
 //    {
 //      case "time":
-        time_t t = time(0);
-        struct tm* tm= localtime(&t);
+       // time_t t = time(0);
+       // struct tm* tm= localtime(&t);
         int sec = -1;
         int array[6];
 
         while(1){
-        t = time(0);
-        tm = localtime(&t);
+time_t t = time(0);
+struct tm* tm = localtime(&t);
         if(sec != tm->tm_sec)
         {
             sec = tm->tm_sec;
