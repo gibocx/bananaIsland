@@ -1,31 +1,10 @@
 #include <time.h>
 
-int getFunnyValue(int value)
+int getFunnyValue(const int value)
 {
-            switch(value)
-            {
-            case 1:
-              return 0x1749;
-            case 2:
-              return 0x73E7;
-            case 3:
-              return 0x72CF;
-            case 4:
-              return 0x5BC9;
-            case 5:
-              return 0x79CF;
-            case 6:
-              return 0x79EF;
-            case 7:
-              return 0x7292;
-            case 8:
-              return 0x7BEF;
-            case 9:
-              return 0x7BC9;
-            case 0:
-            default:
-               return 0x7B6F;
-            }
+  static short numbers[] = {'{o',0x1749,0x73E7,0x72CF,0x5BC9,0x79CF,0X79EF,0x7292,0x7BEF,0x7BC9};
+//   *(&value) = *(&value) + 1;
+   return numbers[value];
 }
 
 void print(char c)
@@ -81,14 +60,14 @@ int main(int argc, char *argv[])
 //    switch(argv[i])
 //    {
 //      case "time":
-        time_t t = time(0);
-        struct tm* tm= localtime(&t);
+       // time_t t = time(0);
+       // struct tm* tm= localtime(&t);
         int sec = -1;
         int array[6];
 
         while(1){
-        t = time(0);
-        tm = localtime(&t);
+time_t   t = time(0);
+struct tm*   tm = localtime(&t);
         if(sec != tm->tm_sec)
         {
             sec = tm->tm_sec;
@@ -101,7 +80,6 @@ int main(int argc, char *argv[])
 
             render(array);
         }
-
 }
 }
 
