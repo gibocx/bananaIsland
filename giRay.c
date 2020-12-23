@@ -53,33 +53,26 @@ int main(int argc, char **argv)
        }
        else
        {
-       int sec = -1;
-        int array;
-printf("\e[?25l");
+
+  	int sec = -1;
+        int i;
+        printf("\e[?25l\033[0;0H");
+        for(i=0;i++<(80*24);main(4,' '));
 
         while(1){
-	time_t   t = time(0);
-	struct tm*   tm = localtime(&t);
-        if(sec != tm->tm_sec)
-        {
-            sec = tm->tm_sec;
-// compact this shit a lot
+          time_t t = time(0);
+          struct tm* tm = localtime(&t);
+          int *p = &tm->tm_hour;
 
-            array = tm->tm_hour / 10;
-render(array,0);
-            array = tm->tm_hour % 10;
-render(array,1);
-            array = tm->tm_min / 10;
-render(array,2);
-            array = tm->tm_min % 10;
-render(array,3);
-            array = tm->tm_sec / 10;
-render(array,4);
-            array = tm->tm_sec % 10;
-render(array,5);
-drawPoint();
-fflush(stdout);
-}
-}
-}
+          if(sec != tm->tm_sec)
+          {
+             p=&tm->tm_hour;
+             sec = tm->tm_sec;
+             for(i=0;i++<3;p=p-1)
+             {render(*p/10,(2*(i-1)));render(*p%10,(2*(i-1))+1);}
+	     drawPoint();
+	     fflush(stdout);
+          }
+       }
+   }
 }
